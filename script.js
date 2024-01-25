@@ -1,36 +1,32 @@
+// Example JavaScript to update the info blocks - this needs to be filled with actual data retrieval logic
+
 document.addEventListener('DOMContentLoaded', function() {
-    const apiKey = 'c1c49f3d3abc4b38b0795f1b98796a68';
-    
-    const stopIDs = {
-        bcdInbound: '70152',
-        bcdOutbound: '70153',
-        route1Harvard: '70152',
-        route1Nubian: '70153'
+    // Dummy data - replace this with actual API calls and dynamic data loading
+    const hynesData = {
+        'B': { 'Gov’t Center': 8, 'Boston College': 6 },
+        'C': { 'Gov’t Center': 2, 'Cleveland Circle': 9 },
+        'D': { 'Union Square': 'Arriving', 'Riverside': 2 }
+        // Add more services
     };
 
-    // Fetch and display data for each stop
-    for (const [key, stopId] of Object.entries(stopIDs)) {
-        fetch(`https://api-v3.mbta.com/predictions?filter[stop]=${stopId}&api_key=${apiKey}`)
-            .then(response => response.json())
-            .then(data => displayData(key, data))
-            .catch(error => displayError(key, error));
-    }
+    const massAveData = {
+        'OL': { 'Oak Grove': 3, 'Forest Hills': 'Approaching' },
+        // Add more services
+    };
+
+    updateInfo('train-info', hynesData);
+    updateInfo('bus-info', massAveData);
 });
 
-function displayData(key, data) {
-    const container = document.getElementById(key);
-    container.innerHTML = '<h3>Arrivals:</h3>';
-    if (data.data.length > 0) {
-        data.data.forEach(prediction => {
-            const arrivalTime = new Date(prediction.attributes.arrival_time);
-            container.innerHTML += `<p>${arrivalTime.toLocaleTimeString()}</p>`;
-        });
-    } else {
-        container.innerHTML += `<p>No upcoming arrivals.</p>`;
+function updateInfo(containerId, data) {
+    const container = document.getElementById(containerId);
+    for (const [line, times] of Object.entries(data)) {
+        const lineDiv = document.createElement('div');
+        for (const [destination, time] of Object.entries(times)) {
+            const p = document.createElement('p');
+            p.innerHTML = `<span class="line ${line.toLowerCase()}">${line}</span> ${destination} <strong>${time} mins</strong>`;
+            lineDiv.appendChild(p);
+        }
+        container.appendChild(lineDiv);
     }
-}
-
-function displayError(key, error) {
-    const container = document.getElementById(key);
-    container.innerHTML = `<p>Error loading data: ${error}</p>`;
 }
