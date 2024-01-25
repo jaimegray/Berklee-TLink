@@ -1,20 +1,61 @@
-body {
+body, html {
+    margin: 0;
+    padding: 0;
     font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f4f4f4;
+    background: #333; /* Adjust the color to match your design */
 }
 
-h1 {
-    color: #333;
-}
-
-#info {
-    background-color: #fff;
-    padding: 20px;
+#wrapper {
+    max-width: 1200px; /* Adjust as per your design */
+    margin: 20px auto;
+    background: #FFF; /* Adjust the color to match your design */
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
-h2 {
-    color: #444;
+header {
+    background: #000; /* Adjust the color to match your design */
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+header #logo {
+    margin-right: 15px;
+}
+
+.info-block {
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.info-block div {
+    text-align: center;
+}
+
+footer {
+    background: #222; /* Adjust the color to match your design */
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.line {
+    padding: 2px 5px;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: bold;
+    display: inline-block;
+    margin: 0 2px;
+}
+
+.green {
+    background: #008000;
+}
+
+/* Add more styles here to match your design */
